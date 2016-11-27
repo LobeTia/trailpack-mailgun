@@ -2,6 +2,8 @@
 Send transational emails via [Mailgun](https://www.mailgun.com/) and [Trails](http://trailsjs.io)
 This project is built on top of the [Mailgun-Js](https://github.com/bojand/mailgun-js) library
 
+## WARNING still work in progress, things can break
+
 ## Install
 
 ```sh
