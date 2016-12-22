@@ -19,7 +19,7 @@
   "dependencies": {
     "mailgun-js": "0.7.14",
     "trailpack": "1.0.5",
-    "trails-service": "1.0.0"
+    "trails-service": "2.0.0"
   },
   "devDependencies": {
     "lodash": "4.17.2",
