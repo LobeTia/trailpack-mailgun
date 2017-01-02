@@ -17,7 +17,7 @@
     "trailjs"
   ],
   "dependencies": {
-    "mailgun-js": "0.7.15",
+    "mailgun-js": "0.8.0",
     "trailpack": "1.0.5",
     "trails-service": "1.0.0"
   },
