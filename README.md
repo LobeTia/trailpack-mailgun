@@ -36,15 +36,15 @@ module.exports = {
 
 ## Usage
 
-Send email via `app.services.MailgunService.Send`
+Send email via `app.services.MailgunService.send`
 
 ```
-app.services.KueService.addJob("send_email", {
-      from:    "Your Email <your@email.it>",
-      to:      "target@email.com",
-      subject: "Hello from trailpack-mailgun",
-      text:    "Please, report issues"
-    })
+app.services.MailgunService.send({
+  from:    "Your Email <your@email.it>",
+  to:      "target@email.com",
+  subject: "Hello from trailpack-mailgun",
+  text:    "Please, report issues"
+})
 ```
 
 I'm still working on other features (list, webhook, etc) so for now you can access to the raw mailgun-js instance using

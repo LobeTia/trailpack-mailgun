@@ -1,6 +1,6 @@
 {
   "name": "trailpack-mailgun",
-  "version": "0.1.2",
+  "version": "2.0.0",
   "description": "A new Trails.js Application",
   "homepage": "https://github.com/LobeTia/trailpack-mailgun#readme",
   "author": {
@@ -17,21 +17,21 @@
     "trailjs"
   ],
   "dependencies": {
-    "mailgun-js": "0.7.14",
-    "trailpack": "1.0.5",
-    "trails-service": "1.0.0"
+    "mailgun-js": "0.8.2",
+    "trailpack": "2.1.2",
+    "trails-service": "2.0.0"
   },
   "devDependencies": {
-    "lodash": "4.11.1",
-    "trails": "1.1.1",
-    "eslint": "2.4",
-    "eslint-config-trails": "1.0.4",
-    "mocha": "2.4.5",
-    "smokesignals": "1.0.9",
-    "trailpack-core": "1.0.0-beta-6"
+    "eslint": "3.17.1",
+    "eslint-config-trails": "2.0.8",
+    "lodash": "4.17.4",
+    "mocha": "3.2.0",
+    "smokesignals": "2.1.0",
+    "trailpack-core": "2.0.0",
+    "trails": "2.0.2"
   },
   "scripts": {
-    "test": "eslint . && mocha"
+    "test": "eslint --fix . && mocha"
   },
   "engines": {
     "node": ">= 4.0.0"

@@ -8,8 +8,8 @@ module.exports = class MailgunTrailpack extends Trailpack {
    * TODO document method
    */
   validate() {
-    if (!this.app.config.mailgun) throw new Error("config.mailgun missing")
-    if (!this.app.config.mailgun.apiKey) throw new Error("config.mailgun.apikey missing")
+    if (!this.app.config.mailgun) throw new Error('config.mailgun missing')
+    if (!this.app.config.mailgun.apiKey) throw new Error('config.mailgun.apikey missing')
   }
 
   /**
@@ -23,17 +23,17 @@ module.exports = class MailgunTrailpack extends Trailpack {
    * TODO document method
    */
   initialize() {
-    this.app.on("trails:ready", () => {
-      this.app.services.MailgunService.init();
+    this.app.on('trails:ready', () => {
+      this.app.services.MailgunService.init()
     })
-    return Promise.resolve();
+    return Promise.resolve()
   }
 
   constructor(app) {
     super(app, {
       config: require('./config'),
-      api:    require('./api'),
-      pkg:    require('./package')
+      api: require('./api'),
+      pkg: require('./package')
     })
   }
 }
