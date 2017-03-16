@@ -1,5 +1,5 @@
 # trailpack-mailgun
-Send transational emails via [Mailgun](https://www.mailgun.com/) and [Trails](http://trailsjs.io)
+Send transational emails via [Mailgun](https://www.mailgun.com/) and [Trails](http://trailsjs.io)  
 This project is built on top of the [Mailgun-Js](https://github.com/bojand/mailgun-js) library
 
 ## WARNING still work in progress, things can break
@@ -8,6 +8,7 @@ This project is built on top of the [Mailgun-Js](https://github.com/bojand/mailg
 
 ```sh
 $ npm install --save trailpack-mailgun
+yo trail:trailpack trailpack-mailgun
 ```
 
 ## Configure
