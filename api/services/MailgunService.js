@@ -1,7 +1,7 @@
 'use strict'
 
 const Service = require('trails-service')
-
+const _ = require('lodash')
 /**
  * @module MailgunService
  * @description TODO document Service
@@ -11,22 +11,54 @@ module.exports = class MailgunService extends Service {
     const config = this.app.config.mailgun
 
     this.mailgunInstance = require('mailgun-js')(config)
+    this.templateRender  = null
   }
 
-  send(data) {
-
+  messagesSend(data) {
     return new Promise((fullfill, reject) => {
-
-      if (!data.from) {reject('MailgunService.send require a from parameter'); return false}
-      if (!data.to) {reject('MailgunService.send require a to parameter'); return false}
-      if (!data.subject) {reject('MailgunService.send require a subject parameter'); return false}
-      if (!data.text) {reject('MailgunService.send require a text parameter'); return false}
+      data.from = data.from || this.app.config.mailgun.defaultFrom
 
       this.mailgunInstance.messages().send(data, function(error, body) {
         if (error) reject(error)
         fullfill(body)
       })
     })
+  }
+
+  messagesSendTemplate(templateName, templateOptions, mailgunOptions) {
+    if (!this.templateRender) throw new Error('should configure a templateRender first')
+
+    return this.renderTemplate(templateName, templateOptions)
+      .then(render => {
+        return this.messagesSend(
+          _.extend({
+            subject: render.subject,
+            html: render.html
+          }, mailgunOptions)
+        )
+      })
+  }
+
+  renderTemplate(name, options) {
+    return new Promise((fullfill, reject) => {
+      this.templateRender.render(name, options, (error, render) => {
+        if (error) reject(error)
+        else {
+          fullfill({
+            subject: render.match(/<title[^>]*>(.*?)<\/title>/i)[1] || null,
+            html: render
+          })
+        }
+      })
+    })
+  }
+
+  configureTemplateRender(fn) {
+    this.templateRender = fn
+  }
+
+  getMailgunInstance() {
+    return this.getMailgunInstance()
   }
 }
 

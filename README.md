@@ -1,6 +1,6 @@
 # trailpack-mailgun
 Send transational emails via [Mailgun](https://www.mailgun.com/) and [Trails](http://trailsjs.io)  
-This project is built on top of the [Mailgun-Js](https://github.com/bojand/mailgun-js) library
+This project is built on top of the [Mailgun-Js](https://github.com/bojand/mailgun-js) library so you can refer to his documentation for additional information
 
 ## WARNING still work in progress, things can break
 
@@ -8,7 +8,7 @@ This project is built on top of the [Mailgun-Js](https://github.com/bojand/mailg
 
 ```sh
 $ npm install --save trailpack-mailgun
-yo trail:trailpack trailpack-mailgun
+yo trails:trailpack trailpack-mailgun
 ```
 
 ## Configure
@@ -30,7 +30,9 @@ module.exports = {
 // config/mailgun.js
 module.exports = {
   apiKey: "key-******",
-  domain: "sandbox***.mailgun.org"
+  domain: "sandbox***.mailgun.org",
+  defaultFrom: "Your name <your@email.here>",
+  templateRender: 
   // you can use all mailgun-js options here
 }
 ```
@@ -40,13 +42,28 @@ module.exports = {
 Send email via `app.services.MailgunService.send`
 
 ```
-app.services.MailgunService.send({
-  from:    "Your Email <your@email.it>",
+app.services.MailgunService.messagesSend({
+  from:    "Your Email <your@email.it>", // optional if configured in config/mailgun.js
   to:      "target@email.com",
   subject: "Hello from trailpack-mailgun",
   text:    "Please, report issues"
-})
+}).then(app.log.silly).catch(app.log.error)
 ```
 
 I'm still working on other features (list, webhook, etc) so for now you can access to the raw mailgun-js instance using
-`app.services.MailgunService.Raw`
+`app.services.MailgunService.getMailgunInstance()`
+
+## Utils
+
+You can configure the template render of your web server and easily send html email
+
+Simply pass the webserver instance `app.services.MailgunService.configureTemplateRender(app.packs.express.server)`  
+The first two parameters are passed to the render, the third to `MailgunService.messagesSend()
+
+```
+app.services.MailgunService.messagesSendTemplate("email/hello", {}, {
+  to: "target@email.com"
+})
+.then(app.log.info)
+.catch(app.log.error)
+```
