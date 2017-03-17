@@ -41,7 +41,7 @@ module.exports = {
 
 Send email via `app.services.MailgunService.send`
 
-```
+```js
 app.services.MailgunService.messagesSend({
   from:    "Your Email <your@email.it>", // optional if configured in config/mailgun.js
   to:      "target@email.com",
@@ -60,10 +60,8 @@ You can configure the template render of your web server and easily send html em
 Simply pass the webserver instance `app.services.MailgunService.configureTemplateRender(app.packs.express.server)`  
 The first two parameters are passed to the render, the third to `MailgunService.messagesSend()
 
-```
+```js
 app.services.MailgunService.messagesSendTemplate("email/hello", {}, {
   to: "target@email.com"
-})
-.then(app.log.info)
-.catch(app.log.error)
+}).then(app.log.info).catch(app.log.error)
 ```
