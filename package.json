@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "lodash": "4.17.4",
-    "mailgun-js": "0.8.2",
+    "mailgun-js": "0.10.0",
     "trailpack": "2.1.2",
     "trails-service": "2.0.0"
   },
