@@ -13,6 +13,9 @@ module.exports = _.defaultsDeep({
     services: { }
   },
   config: {
+    mailgun:{
+
+    },
     main: {
       packs: [
         require('../')

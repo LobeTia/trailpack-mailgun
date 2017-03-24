@@ -1,10 +1,15 @@
 'use strict'
 /* global describe, it */
 
-const assert = require('assert')
+const Chai   = require("chai")
+const should = Chai.should()
 
 describe('MailgunService', () => {
   it('should exist', () => {
-    assert(global.app.api.services['MailgunService'])
+    should.exist(global.app.api.services.MailgunService)
+  })
+
+  it("should return Mailgun instance", () => {
+    global.app.services.MailgunService.getMailgunInstance().should.be.a("object")
   })
 })

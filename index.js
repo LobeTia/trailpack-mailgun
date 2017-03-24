@@ -23,17 +23,16 @@ module.exports = class MailgunTrailpack extends Trailpack {
    * TODO document method
    */
   initialize() {
-    this.app.on('trails:ready', () => {
-      this.app.services.MailgunService.init()
-    })
+    this.app.services.MailgunService.init()
+    this.app.emit('trailpack-mailgun:ready')
     return Promise.resolve()
   }
 
   constructor(app) {
     super(app, {
       config: require('./config'),
-      api: require('./api'),
-      pkg: require('./package')
+      api:    require('./api'),
+      pkg:    require('./package')
     })
   }
 }

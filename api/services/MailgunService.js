@@ -58,7 +58,7 @@ module.exports = class MailgunService extends Service {
   }
 
   getMailgunInstance() {
-    return this.getMailgunInstance()
+    return this.mailgunInstance
   }
 }
 
