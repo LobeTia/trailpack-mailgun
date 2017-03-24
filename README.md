@@ -32,7 +32,6 @@ module.exports = {
   apiKey: "key-******",
   domain: "sandbox***.mailgun.org",
   defaultFrom: "Your name <your@email.here>",
-  templateRender: 
   // you can use all mailgun-js options here
 }
 ```
