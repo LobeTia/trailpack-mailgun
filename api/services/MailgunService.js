@@ -11,14 +11,14 @@ module.exports = class MailgunService extends Service {
     const config = this.app.config.mailgun
 
     this.mailgunInstance = require('mailgun-js')(config)
-    this.templateRender  = null
+    this.templateRender = null
   }
 
   messagesSend(data) {
     return new Promise((fullfill, reject) => {
       data.from = data.from || this.app.config.mailgun.defaultFrom
 
-      this.mailgunInstance.messages().send(data, function(error, body) {
+      this.mailgunInstance.messages().send(data, function (error, body) {
         if (error) reject(error)
         fullfill(body)
       })
@@ -28,7 +28,7 @@ module.exports = class MailgunService extends Service {
   messagesSendTemplate(templateName, templateOptions, mailgunOptions) {
     if (!this.templateRender) throw new Error('should configure a templateRender first')
 
-    return this.renderTemplate(templateName, templateOptions)
+    return this._renderTemplate(templateName, templateOptions)
       .then(render => {
         return this.messagesSend(
           _.extend({
@@ -39,7 +39,7 @@ module.exports = class MailgunService extends Service {
       })
   }
 
-  renderTemplate(name, options) {
+  _renderTemplate(name, options) {
     return new Promise((fullfill, reject) => {
       this.templateRender.render(name, options, (error, render) => {
         if (error) reject(error)
@@ -53,8 +53,13 @@ module.exports = class MailgunService extends Service {
     })
   }
 
-  configureTemplateRender(fn) {
-    this.templateRender = fn
+  configureTemplateRender(templateRender) {
+    if (!templateRender)
+      throw new Error('you must pass a valid templateRender')
+    if (typeof templateRender.render !== 'function')
+      throw new Error("this templateRender doesn't seems to have a .render method")
+    this.templateRender = templateRender
+    return true
   }
 
   getMailgunInstance() {

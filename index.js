@@ -31,8 +31,8 @@ module.exports = class MailgunTrailpack extends Trailpack {
   constructor(app) {
     super(app, {
       config: require('./config'),
-      api:    require('./api'),
-      pkg:    require('./package')
+      api: require('./api'),
+      pkg: require('./package')
     })
   }
 }
