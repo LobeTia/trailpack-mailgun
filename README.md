@@ -5,7 +5,7 @@ This project is built on top of the [Mailgun-Js](https://github.com/bojand/mailg
 ## WARNING still work in progress, things can break
 
 ## Install
-
+Install manually or via [generator-trails](https://github.com/trailsjs/generator-trails)
 ```sh
 $ npm install --save trailpack-mailgun
 yo trails:trailpack trailpack-mailgun
@@ -32,7 +32,7 @@ module.exports = {
   apiKey: "key-******",
   domain: "sandbox***.mailgun.org",
   defaultFrom: "Your name <your@email.here>",
-  // you can use all mailgun-js options here
+  // you can use all mailgun-js options
 }
 ```
 
@@ -60,7 +60,8 @@ Simply pass the webserver instance `app.services.MailgunService.configureTemplat
 The first two parameters are passed to the render, the third to `MailgunService.messagesSend()
 
 ```js
-app.services.MailgunService.messagesSendTemplate("email/hello", {}, {
-  to: "target@email.com"
+app.services.MailgunService.messagesSendTemplate("email/hello", {username:"Jon", now: new Date()}, {
+  to: "target@email.com",
+  subject: "HTML hello from trailpack-mailgun"
 }).then(app.log.info).catch(app.log.error)
 ```
