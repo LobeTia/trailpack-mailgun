@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
-    "eslint": "3.19.0",
+    "eslint": "4.7.2",
     "eslint-config-trails": "2.0.8",
     "lodash": "4.17.4",
     "mocha": "3.2.0",
