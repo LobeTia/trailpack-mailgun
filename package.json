@@ -28,7 +28,7 @@
     "eslint-config-trails": "2.0.8",
     "lodash": "4.17.4",
     "mocha": "3.3.0",
-    "smokesignals": "2.1.0",
+    "smokesignals": "3.0.4",
     "trails": "2.0.2"
   },
   "scripts": {
